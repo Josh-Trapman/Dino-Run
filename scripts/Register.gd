@@ -5,7 +5,7 @@ extends Control
 var stylebox0 : StyleBoxFlat = load("res://assets/inactive_style_box_flat.tres")
 var stylebox1 : StyleBoxFlat = load("res://assets/active_style_box_flat.tres")
 
-var save_path = "user://save.dat"
+var save_path = "user://save.json"
 var max_index = 0
 var accounts = []
 
