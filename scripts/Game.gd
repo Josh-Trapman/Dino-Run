@@ -1,8 +1,7 @@
 extends Node2D
 
-@onready var logged_in_player = get_parent().player_data
+@onready var player_data = get_parent().player_data
 @onready var menu_screens = get_parent().find_child("Menu")
-
 
 # Node start positions
 const PLAYER_START_POS := Vector2i(145, 322)
@@ -13,32 +12,38 @@ const CEILING_START_POS := Vector2i(720, 0)
 # Save path
 var save_path = "user://save.dat"
 
+# Account variables
+var total_coins : int = player_data["UserData"]["Coins"]
+var high_score : int = player_data["UserData"]["HighScore"]
+var total_runs : int = player_data["UserData"]["TotalRuns"]
+var most_coins_collected : int = player_data["UserData"]["MostCoinsCollected"]
+var all_time_coins : int = player_data["UserData"]["AllTimeCoinsCollected"]
+var all_time_distance : int = player_data["UserData"]["AllTimeDistance"]
+
 # Game variables
 const START_SPEED : float = 250.0
 const MAX_SPEED : int = 750
 const SPEED_MODIFIER : int = 100
-var speed : float
 const SCORE_MODIFIER : int = 3
+var speed : float
 var score : int
 var screen_size : Vector2i
 var game_running : bool = false
 var coins_collected : int
-var total_coins : int
 var already_spawned : bool = false
-var high_score : int
 var can_click : bool = true
+
 
 func _ready():
 	screen_size = get_window().size
 
+
 func new_game():
-	load_data()
 	get_tree().paused = false
 	
 	menu_screens.find_child("Main").visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$Player.visible = true
-	$HUD/HighScore.text = "Best:" + str(high_score) + "m"
 	
 	# Reset variables
 	score = 0
@@ -56,7 +61,8 @@ func new_game():
 	$Player/Dino.speed_scale = 1
 	$Player/Wings.speed_scale = 1
 	show_coins()
-	
+
+
 func _process(delta):
 	if game_running:
 		# Increases and limits the speed
@@ -98,15 +104,22 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			menu_screens.find_child("Main").start_game()
 
+
 # Updates the score label
 func show_score():
 	$HUD/Score.text = str(score).left(-2).pad_zeros(4) + "m"
+	if high_score < int(str(score).left(-2)):
+		$HUD/HighScore.text = "Best:" + str(high_score) + "m"
+	else:
+		$HUD/HighScore.text = "Best:" + str(score).left(-2) + "m"
 
-# Updates the coins and the coin label
+
+# Updates the coins and the coin icon
 func show_coins():
 	$HUD/Coins.text = str(coins_collected).pad_zeros(3)
 	if len(str(coins_collected)) > 3:
 		$HUD/Coins/CoinIcon.position.x = 42 + 16.25 * (len(str(coins_collected)) - 3)
+
 
 # Randomly spawns an obstacle or coin pattern when the player's score is a multiple of 50
 func spawn_items():
@@ -128,24 +141,24 @@ func spawn_items():
 	else:
 		already_spawned = false
 
-# After logging in this updates loads any info associated with the account
-func load_data():
-	high_score = logged_in_player["UserData"]["HighScore"]
-	total_coins = logged_in_player["UserData"]["Coins"]
 
 func update_data():
 	total_coins += coins_collected
-	logged_in_player["UserData"]["Coins"] = total_coins
-	
-	if int(str(score).left(-2)) > logged_in_player["UserData"]["HighScore"]:
-		logged_in_player["UserData"]["HighScore"] = int(str(score).left(-2))
-	high_score = logged_in_player["UserData"]["HighScore"]
+	player_data["UserData"]["Coins"] = total_coins
+	player_data["UserData"]["AllTimeCoinsCollected"] += coins_collected
+	player_data["UserData"]["TotalRuns"] += 1
+	player_data["UserData"]["AllTimeDistance"] += score
+	if player_data["UserData"]["MostCoinsCollected"] < coins_collected:
+		player_data["UserData"]["MostCoinsCollected"] = coins_collected
+	if int(str(score).left(-2)) > player_data["UserData"]["HighScore"]:
+		player_data["UserData"]["HighScore"] = int(str(score).left(-2))
+	high_score = player_data["UserData"]["HighScore"]
 	
 	save_data()
 
 # Opens the save file, converts data into a JSON string then finds the end of the file and saves the data
 func save_data():
-	var file = FileAccess.open(save_path, FileAccess.READ_WRITE)
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	var accounts = []
 	var temp_accounts = []
 	

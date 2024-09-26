@@ -59,14 +59,18 @@ func create_account():
 				"Password" : $ConfirmPassword.text.sha256_text()
 			},
 			"UserData" : {
+				"AllTimeCoinsCollected" : 0,
+				"AllTimeDistance" : 0,
 				"Coins" : 0,
 				"HighScore" : 0,
+				"MostCoinsCollected" : 0,
 				"Skins" : {
 					"Bluezoid" : true,
 					"Leafy" : false,
 					"GoldieRaptor" : false,
 					"BlazeRex" : false
-				}
+				},
+				"TotalRuns" : 0
 			}
 		}
 		return true
