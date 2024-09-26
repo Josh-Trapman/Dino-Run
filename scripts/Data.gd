@@ -22,7 +22,7 @@ func _on_login_pressed():
 	var login_validation = check_credentials()
 	# Runs the game if the login credentials is true and passes the account info
 	if login_validation[0]:
-		get_parent().logged_in(login_validation[1])
+		get_parent().logged_in(login_validation[1], login_validation[2])
 		# Removes the log in screen
 		$Transition.transition()
 
@@ -43,7 +43,7 @@ func check_credentials():
 		and credentials["Password"] == $Login/Password.text.sha256_text():
 			print("Login successful for user: ", credentials["Username"])
 			# Return true and the user data (including the index for later use)
-			return [true, existing_data[key]]
+			return [true, existing_data[key], key]
 			
 	print("Please ensure that both your Username and Password are entered correctly")
 	return [false, null]

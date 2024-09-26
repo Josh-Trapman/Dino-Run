@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var player_data = get_parent().player_data
+@onready var player_key : String = get_parent().player_key
 @onready var menu_screens = get_parent().find_child("Menu")
 
 # Node start positions
@@ -10,15 +11,7 @@ const GROUND_START_POS := Vector2i(720, 364)
 const CEILING_START_POS := Vector2i(720, 0)
 
 # Save path
-var save_path = "user://save.dat"
-
-# Account variables
-var total_coins : int = player_data["UserData"]["Coins"]
-var high_score : int = player_data["UserData"]["HighScore"]
-var total_runs : int = player_data["UserData"]["TotalRuns"]
-var most_coins_collected : int = player_data["UserData"]["MostCoinsCollected"]
-var all_time_coins : int = player_data["UserData"]["AllTimeCoinsCollected"]
-var all_time_distance : int = player_data["UserData"]["AllTimeDistance"]
+var save_path = "user://save.json"
 
 # Game variables
 const START_SPEED : float = 250.0
@@ -33,10 +26,24 @@ var coins_collected : int
 var already_spawned : bool = false
 var can_click : bool = true
 
+# Save variables
+var total_coins : int
+var high_score : int
+var total_runs : int
+var most_coins_collected : int
+var all_time_coins : int
+var all_time_distance : int
+var existing_data : Dictionary
+
 
 func _ready():
 	screen_size = get_window().size
-
+	total_coins = player_data["UserData"]["Coins"]
+	high_score = player_data["UserData"]["HighScore"]
+	total_runs = player_data["UserData"]["TotalRuns"]
+	most_coins_collected = player_data["UserData"]["MostCoinsCollected"]
+	all_time_coins = player_data["UserData"]["AllTimeCoinsCollected"]
+	all_time_distance = player_data["UserData"]["AllTimeDistance"]
 
 func new_game():
 	get_tree().paused = false
@@ -89,6 +96,7 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("Pause") :
 			menu_screens.find_child("Pause").just_paused(total_coins + coins_collected)
+			pass
 		
 		score = $Player.position.x * SCORE_MODIFIER
 		show_score()
@@ -109,9 +117,9 @@ func _process(delta):
 func show_score():
 	$HUD/Score.text = str(score).left(-2).pad_zeros(4) + "m"
 	if high_score < int(str(score).left(-2)):
-		$HUD/HighScore.text = "Best:" + str(high_score) + "m"
-	else:
 		$HUD/HighScore.text = "Best:" + str(score).left(-2) + "m"
+	else:
+		$HUD/HighScore.text = "Best:" + str(high_score) + "m"
 
 
 # Updates the coins and the coin icon
@@ -147,7 +155,7 @@ func update_data():
 	player_data["UserData"]["Coins"] = total_coins
 	player_data["UserData"]["AllTimeCoinsCollected"] += coins_collected
 	player_data["UserData"]["TotalRuns"] += 1
-	player_data["UserData"]["AllTimeDistance"] += score
+	player_data["UserData"]["AllTimeDistance"] += int(str(score).left(-2))
 	if player_data["UserData"]["MostCoinsCollected"] < coins_collected:
 		player_data["UserData"]["MostCoinsCollected"] = coins_collected
 	if int(str(score).left(-2)) > player_data["UserData"]["HighScore"]:
@@ -158,25 +166,14 @@ func update_data():
 
 # Opens the save file, converts data into a JSON string then finds the end of the file and saves the data
 func save_data():
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	var accounts = []
-	var temp_accounts = []
-	
-	while not file.eof_reached():
-		temp_accounts.append(JSON.parse_string(file.get_line()))
-	
-	for account in temp_accounts:
-		if typeof(account) == 27 \
-		and not accounts.has(account):
-			accounts.append(account)
-	
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	existing_data = JSON.parse_string(file.get_as_text())
 	file.close()
-		
+	file = null
+	
+	existing_data[player_key] = player_data
+	
 	file = FileAccess.open(save_path, FileAccess.WRITE)
-	
-	for index in accounts.size():
-		if index == logged_in_player["Index"]:
-			file.store_line(JSON.stringify(logged_in_player))
-		else:
-			file.store_line(JSON.stringify(accounts[index]))
+	file.store_string(JSON.stringify(existing_data))
 	file.close()
+	file = null
