@@ -4,7 +4,7 @@ var stylebox0 : StyleBoxFlat = load("res://assets/inactive_style_box_flat.tres")
 var stylebox1 : StyleBoxFlat = load("res://assets/active_style_box_flat.tres")
 
 var save_path = "user://save.json"
-var max_index = 0
+var max_index = -1
 var existing_data : Dictionary
 
 func _on_register_pressed():
