@@ -1,58 +1,75 @@
 extends Control
 
-@onready var file = get_parent()
-
 var stylebox0 : StyleBoxFlat = load("res://assets/inactive_style_box_flat.tres")
 var stylebox1 : StyleBoxFlat = load("res://assets/active_style_box_flat.tres")
 
 var save_path = "user://save.json"
 var max_index = 0
-var accounts = []
+var existing_data : Dictionary
 
 func _on_register_pressed():
-	var new_account = create_account()
-	if new_account[0]:
-		file.seek_end()
-		file.store_line("")
-		file.store_line(JSON.stringify(new_account[1]))
-		file = FileAccess.open(save_path, FileAccess.READ_WRITE)
-	elif len(new_account) == 2 and typeof(new_account[1]) == 2 and new_account[1] == 0:
-		print("Please fill in all fields")
-
-	elif len(new_account) == 2 and typeof(new_account[1]) == 2 and new_account[1] == 1:
-		print("passwords dont match")
-
+	load_file()
+	var username_available = check_username_available()
+	
+	if username_available:
+		var passwords_match = create_account()
+		if passwords_match:
+			# Writes all of the accounts back into the file, including the newly created account
+			var file = FileAccess.open(save_path, FileAccess.WRITE)
+			file.store_string(JSON.stringify(existing_data))
+			# Closes the file to free up memory
+			file.close()
+			file = null
+		else:
+			print("Passwords don't match")
 	else:
-		print("account exists")
+		print("Username is already in use")
+
+
+func load_file():
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	if file:
+		existing_data = JSON.parse_string(file.get_as_text())
+		file.close()
+		file = null
+
+
+func check_username_available():
+	for key in existing_data.keys():
+		var account_data = existing_data[key]
+		var credentials = account_data["Credentials"]
+		
+		# Check if the username matches
+		if credentials["Username"] == $Username.text:
+			return false
+	return true
 
 
 func create_account():
-	for account in accounts:
-		if typeof(account) == 27:
-			if max_index < account["Index"]:
-				max_index = account["Index"]
-			if $Register/Username.text == account["Username"]:
-				return [false]
-			
-	if $Register/Password.text.sha256_text() == $Register/ConfirmPassword.text.sha256_text() \
-	and not $Register/ConfirmPassword.text.is_empty() \
-	and not $Register/Username.text.is_empty():
-		var new_account = {
-			"Index" : max_index + 1,
+	for key in existing_data.keys():
+		if max_index < int(key):
+			max_index = int(key)
+	
+	if $Password.text.sha256_text() == $ConfirmPassword.text.sha256_text() \
+	and not $ConfirmPassword.text.is_empty() \
+	and not $Username.text.is_empty():
+		existing_data[str(max_index + 1)] = {
+			"Credentials" : {
+				"Username" : $Username.text,
+				"Password" : $ConfirmPassword.text.sha256_text()
+			},
 			"UserData" : {
 				"Coins" : 0,
 				"HighScore" : 0,
-				"Password" : $Register/ConfirmPassword.text.sha256_text(),
 				"Skins" : {
-					"Blue" : true,
-					"Red" : false}},
-			"Username" : $Register/Username.text}
-		accounts.append(new_account)
-		return [true, new_account]
+					"Bluezoid" : true,
+					"Leafy" : false,
+					"GoldieRaptor" : false,
+					"BlazeRex" : false
+				}
+			}
+		}
+		return true
 	
-	elif $Register/ConfirmPassword.text.is_empty() \
-	or $Register/Password.text.is_empty() \
-	or $Register/Username.text.is_empty():
-		return [false, 0]
 	else:
-		return [false, 1]
+		return false

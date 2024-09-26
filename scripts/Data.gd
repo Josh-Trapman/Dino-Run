@@ -8,7 +8,6 @@ var stylebox1 : StyleBoxFlat = load("res://assets/active_style_box_flat.tres")
 
 var save_path = "user://save.json"
 var existing_data : Dictionary
-var account : Dictionary = {}
 
 func _on_register_screen_pressed():
 	$Login.visible = false

@@ -936,7 +936,7 @@ libraries = {
 [connection signal="toggled" from="Login/Password/ShowPassword" to="Login/Password/ShowPassword" method="_on_toggled"]
 [connection signal="pressed" from="Login/Login" to="." method="_on_login_pressed"]
 [connection signal="pressed" from="Login/RegisterScreen" to="." method="_on_register_screen_pressed"]
-[connection signal="pressed" from="Register/Register" to="." method="_on_register_pressed"]
+[connection signal="pressed" from="Register/Register" to="Register" method="_on_register_pressed"]
 [connection signal="pressed" from="Register/LoginScreen" to="." method="_on_login_screen_pressed"]
 [connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
 [connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_settings_pressed"]
