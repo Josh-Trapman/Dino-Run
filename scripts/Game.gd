@@ -38,6 +38,7 @@ var existing_data : Dictionary
 
 func _ready():
 	screen_size = get_window().size
+	# Sets all of the save variables
 	total_coins = player_data["UserData"]["Coins"]
 	high_score = player_data["UserData"]["HighScore"]
 	total_runs = player_data["UserData"]["TotalRuns"]
