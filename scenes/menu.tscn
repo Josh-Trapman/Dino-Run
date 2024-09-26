@@ -1,0 +1,946 @@
+[gd_scene load_steps=31 format=3 uid="uid://b05yl1f3welf3"]
+
+[ext_resource type="Script" path="res://scripts/Data.gd" id="1_5swjr"]
+[ext_resource type="Texture2D" uid="uid://cqji3yffntice" path="res://assets/eye.png" id="3_8ylt3"]
+[ext_resource type="StyleBox" uid="uid://t5vmxay2mphb" path="res://assets/inactive_style_box_flat.tres" id="4_eys6x"]
+[ext_resource type="Script" path="res://scripts/ShowPassword.gd" id="5_fta5l"]
+[ext_resource type="Script" path="res://scripts/Register.gd" id="6_1mxwc"]
+[ext_resource type="Texture2D" uid="uid://bpesytnn2fu8l" path="res://assets/plx-1.png" id="6_3ielx"]
+[ext_resource type="Script" path="res://scripts/Pause.gd" id="6_u5p4l"]
+[ext_resource type="Texture2D" uid="uid://cm4bk3e3xsum5" path="res://assets/plx-2.png" id="7_35vng"]
+[ext_resource type="Texture2D" uid="uid://dpvdi5fl0ix0q" path="res://assets/Ground.png" id="7_nh076"]
+[ext_resource type="Texture2D" uid="uid://dqnf3bwshlwq7" path="res://assets/plx-3.png" id="8_h6a2g"]
+[ext_resource type="FontFile" uid="uid://dnosviu1w3ide" path="res://assets/PixelOperator8.ttf" id="8_xxfdu"]
+[ext_resource type="Script" path="res://scripts/Transition.gd" id="9_qy8ge"]
+[ext_resource type="Texture2D" uid="uid://dfrubmorxccbu" path="res://assets/coin.png" id="9_vxi5v"]
+[ext_resource type="Texture2D" uid="uid://bjhvik0xjqlmt" path="res://assets/plx-4.png" id="9_wc4ap"]
+[ext_resource type="Texture2D" uid="uid://bcjxnrttt8g5j" path="res://assets/plx-5.png" id="10_57yvt"]
+[ext_resource type="FontFile" uid="uid://q0ww5txl6nrv" path="res://assets/PixelOperator8-Bold.ttf" id="12_ohcaa"]
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="14_0hpur"]
+[ext_resource type="Script" path="res://scripts/Settings.gd" id="15_e7fr2"]
+[ext_resource type="LabelSettings" uid="uid://bmwat70l5eqih" path="res://assets/font.tres" id="15_ma70i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nr6b"]
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jr317"]
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p81t2"]
+bg_color = Color(0.0901961, 0.203922, 0.196078, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_kdm37"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jde7b"]
+resource_name = "start_game"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-720, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t33hj"]
+_data = {
+"RESET": SubResource("Animation_kdm37"),
+"start_game": SubResource("Animation_jde7b")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojycx"]
+bg_color = Color(0.0901961, 0.203922, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_eeomj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_00sji"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_70bv8"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ff2u"]
+_data = {
+"RESET": SubResource("Animation_eeomj"),
+"fade_in": SubResource("Animation_00sji"),
+"fade_out": SubResource("Animation_70bv8")
+}
+
+[node name="Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 14.0
+offset_right = 2.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5swjr")
+
+[node name="Login" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="Login"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -362.0
+offset_top = -214.0
+offset_right = 358.0
+offset_bottom = 186.0
+
+[node name="BG0" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3ielx")
+
+[node name="BG1" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_35vng")
+
+[node name="BG2" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_h6a2g")
+
+[node name="BG3" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_wc4ap")
+
+[node name="BG4" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_57yvt")
+
+[node name="Ground0" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.82
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -3.05176e-05
+offset_right = -180.0
+offset_bottom = -36.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_nh076")
+
+[node name="Ground1" type="NinePatchRect" parent="Login/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.82
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.05176e-05
+offset_right = -180.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("7_nh076")
+
+[node name="BackgroundDim" type="ColorRect" parent="Login"]
+layout_mode = 0
+offset_left = -362.0
+offset_top = -214.0
+offset_right = 358.0
+offset_bottom = 186.0
+color = Color(0, 0, 0, 0.27451)
+
+[node name="Username" type="LineEdit" parent="Login"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -160.0
+offset_right = 125.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_xxfdu")
+placeholder_text = "Username"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_blink_interval = 0.4
+
+[node name="Password" type="LineEdit" parent="Login"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_xxfdu")
+placeholder_text = "Password"
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_blink_interval = 0.4
+secret = true
+
+[node name="Panel" type="Panel" parent="Login/Password"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 9.0
+offset_right = 244.0
+offset_bottom = 39.0
+theme_override_styles/panel = ExtResource("4_eys6x")
+
+[node name="ShowPassword" type="TextureButton" parent="Login/Password"]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 14.0
+offset_right = 239.0
+offset_bottom = 34.0
+toggle_mode = true
+texture_normal = ExtResource("3_8ylt3")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_fta5l")
+
+[node name="Login" type="Button" parent="Login"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -30.0
+offset_right = 38.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Login"
+
+[node name="RegisterScreen" type="Button" parent="Login"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -85.0
+offset_top = 50.0
+offset_right = 85.0
+offset_bottom = 81.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("12_ohcaa")
+text = "Create one!"
+flat = true
+
+[node name="Label" type="Label" parent="Login"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -141.0
+offset_top = 30.0
+offset_right = 141.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Don't have an account?"
+label_settings = SubResource("LabelSettings_6nr6b")
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label" parent="Login"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 291.0
+offset_right = 585.0
+offset_bottom = 314.0
+horizontal_alignment = 1
+
+[node name="Register" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_1mxwc")
+
+[node name="Background" type="Control" parent="Register"]
+anchors_preset = 0
+offset_left = -362.0
+offset_top = -214.0
+offset_right = 358.0
+offset_bottom = 186.0
+
+[node name="BG0" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3ielx")
+
+[node name="BG1" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_35vng")
+
+[node name="BG2" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_h6a2g")
+
+[node name="BG3" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_wc4ap")
+
+[node name="BG4" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_57yvt")
+
+[node name="Ground0" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.82
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -3.05176e-05
+offset_right = -180.0
+offset_bottom = -36.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_nh076")
+
+[node name="Ground1" type="NinePatchRect" parent="Register/Background"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.82
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.05176e-05
+offset_right = -180.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("7_nh076")
+
+[node name="BackgroundDim" type="ColorRect" parent="Register/Background"]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 0.27451)
+
+[node name="ErrorLabel" type="Label" parent="Register"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 144.0
+offset_right = 21.0
+offset_bottom = 167.0
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -156.0
+offset_top = 80.0
+offset_right = 156.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Already have an account?"
+label_settings = SubResource("LabelSettings_jr317")
+horizontal_alignment = 1
+
+[node name="Username" type="LineEdit" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -125.0
+offset_top = -160.0
+offset_right = 125.0
+offset_bottom = -110.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+placeholder_text = "Username"
+
+[node name="Password" type="LineEdit" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = -50.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+placeholder_text = "Password"
+secret = true
+
+[node name="ConfirmPassword" type="LineEdit" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -125.0
+offset_top = -40.0
+offset_right = 125.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+placeholder_text = "Confirm"
+secret = true
+
+[node name="Register" type="Button" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -57.0
+offset_top = 30.0
+offset_right = 57.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Register"
+
+[node name="LoginScreen" type="Button" parent="Register"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -42.0
+offset_top = 100.0
+offset_right = 42.0
+offset_bottom = 131.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("12_ohcaa")
+text = "Login"
+flat = true
+
+[node name="Main" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("14_0hpur")
+
+[node name="Panel" type="Panel" parent="Main"]
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.08
+anchor_right = 0.311
+anchor_bottom = 0.92
+offset_left = 0.0799994
+offset_right = 0.0799866
+theme_override_styles/panel = SubResource("StyleBoxFlat_p81t2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main"]
+libraries = {
+"": SubResource("AnimationLibrary_t33hj")
+}
+
+[node name="Timer" type="Timer" parent="Main"]
+wait_time = 0.75
+autostart = true
+
+[node name="Label" type="Label" parent="Main"]
+texture_filter = 1
+offset_left = 332.0
+offset_top = 192.0
+offset_right = 606.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("12_ohcaa")
+text = "Press space to play"
+label_settings = ExtResource("15_ma70i")
+
+[node name="TotalCoins" type="Label" parent="Main"]
+offset_left = 168.0
+offset_top = 8.0
+offset_right = 208.0
+offset_bottom = 31.0
+
+[node name="Buttons" type="Control" parent="Main"]
+layout_mode = 3
+anchor_left = 0.011
+anchor_top = 0.08
+anchor_right = 0.311
+anchor_bottom = 0.92
+offset_left = 0.0799994
+offset_right = 0.0799866
+
+[node name="Skins" type="Button" parent="Main/Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Skins
+"
+
+[node name="Settings" type="Button" parent="Main/Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 56.0
+offset_top = 208.0
+offset_right = 176.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Settings
+"
+
+[node name="Logout" type="Button" parent="Main/Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 272.0
+offset_right = 168.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Logout
+"
+
+[node name="Settings" type="Control" parent="Main"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_e7fr2")
+
+[node name="Panel" type="Panel" parent="Main/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.6
+anchor_top = 1.8
+anchor_right = 14.4
+anchor_bottom = 8.2
+offset_bottom = -3.05176e-05
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojycx")
+
+[node name="Label" type="Label" parent="Main/Settings"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 320.0
+offset_top = 224.0
+offset_right = 404.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Volume"
+label_settings = ExtResource("15_ma70i")
+
+[node name="Volume" type="HSlider" parent="Main/Settings"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 216.0
+offset_top = 248.0
+offset_right = 504.0
+offset_bottom = 264.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Credits" type="Button" parent="Main/Settings"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 384.0
+offset_top = 144.0
+offset_right = 484.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Credits"
+
+[node name="Stats" type="Button" parent="Main/Settings"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 264.0
+offset_top = 144.0
+offset_right = 338.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Stats"
+
+[node name="Back" type="Button" parent="Main/Settings"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Back"
+
+[node name="Skins" type="Control" parent="Main"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkinBlue" type="Control" parent="Main/Skins"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="Label" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buy" type="Button" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EquipSkin" type="Button" parent="Main/Skins/SkinBlue"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="SkinGreen" type="Control" parent="Main/Skins"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="Label" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buy" type="Button" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EquipSkin" type="Button" parent="Main/Skins/SkinGreen"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="SkinRed" type="Control" parent="Main/Skins"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="Label" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buy" type="Button" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EquipSkin" type="Button" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="SkinYellow" type="Control" parent="Main/Skins"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Price" type="Label" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buy" type="Button" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EquipSkin" type="Button" parent="Main/Skins/SkinYellow"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Pause" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("6_u5p4l")
+
+[node name="BackgroundDim" type="ColorRect" parent="Pause"]
+modulate = Color(0, 0, 0, 0.443137)
+offset_right = 720.0
+offset_bottom = 400.0
+pivot_offset = Vector2(365, 205)
+color = Color(0, 0, 0, 0.27451)
+
+[node name="CurrentScore" type="Label" parent="Pause"]
+offset_left = 599.0
+offset_top = 19.0
+offset_right = 639.0
+offset_bottom = 42.0
+
+[node name="TotalCoins" type="Label" parent="Pause"]
+texture_filter = 1
+offset_left = 706.0
+offset_top = 3.0
+offset_right = 720.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "0"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="CoinIcon" type="NinePatchRect" parent="Pause/TotalCoins"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -14.0
+offset_bottom = 14.0
+texture = ExtResource("9_vxi5v")
+region_rect = Rect2(3, 3, 10, 10)
+
+[node name="Resume" type="Button" parent="Pause"]
+offset_left = 183.0
+offset_top = 189.0
+offset_right = 253.0
+offset_bottom = 229.0
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Pause"]
+offset_left = 316.0
+offset_top = 189.0
+offset_right = 386.0
+offset_bottom = 229.0
+text = "Settings"
+
+[node name="EndRun" type="Button" parent="Pause"]
+offset_left = 453.0
+offset_top = 188.0
+offset_right = 523.0
+offset_bottom = 228.0
+text = "Quit"
+
+[node name="Transition" type="CanvasLayer" parent="."]
+script = ExtResource("9_qy8ge")
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+modulate = Color(0, 0, 0, 0)
+offset_right = 720.0
+offset_bottom = 400.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_2ff2u")
+}
+
+[connection signal="mouse_entered" from="Login/Password/ShowPassword" to="Login/Password/ShowPassword" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Login/Password/ShowPassword" to="Login/Password/ShowPassword" method="_on_mouse_exited"]
+[connection signal="toggled" from="Login/Password/ShowPassword" to="Login/Password/ShowPassword" method="_on_toggled"]
+[connection signal="pressed" from="Login/Login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="Login/RegisterScreen" to="." method="_on_register_screen_pressed"]
+[connection signal="pressed" from="Register/Register" to="." method="_on_register_pressed"]
+[connection signal="pressed" from="Register/LoginScreen" to="." method="_on_login_screen_pressed"]
+[connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
+[connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="value_changed" from="Main/Settings/Volume" to="Main/Settings" method="_on_volume_value_changed"]
+[connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]
+[connection signal="pressed" from="Pause/Resume" to="Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/EndRun" to="Pause" method="_on_end_run_pressed"]

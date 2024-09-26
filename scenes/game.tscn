@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgi0oaj11mixl"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_yymnj"]
+[ext_resource type="PackedScene" uid="uid://dbco2xvb1svwo" path="res://scenes/bg.tscn" id="2_cvwkd"]
+[ext_resource type="PackedScene" uid="uid://da1nr45qkfosg" path="res://scenes/ground.tscn" id="3_bdn1d"]
+[ext_resource type="PackedScene" uid="uid://cgnc10g66wpvt" path="res://scenes/ceiling.tscn" id="4_3axbe"]
+[ext_resource type="PackedScene" uid="uid://bjpyss3mhrmoe" path="res://scenes/coin_patterns.tscn" id="5_yemb6"]
+[ext_resource type="PackedScene" uid="uid://ka8a3byhtam0" path="res://scenes/obstacles.tscn" id="6_el3d6"]
+[ext_resource type="PackedScene" uid="uid://bdc247s5dv1jq" path="res://scenes/player.tscn" id="7_epumv"]
+[ext_resource type="PackedScene" uid="uid://bk5ig2bbxtxr2" path="res://scenes/hud.tscn" id="8_vasb3"]
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_yymnj")
+
+[node name="BG" parent="." instance=ExtResource("2_cvwkd")]
+
+[node name="Ground" parent="." instance=ExtResource("3_bdn1d")]
+
+[node name="Ceiling" parent="." instance=ExtResource("4_3axbe")]
+position = Vector2(720, 0)
+scale = Vector2(2, 2)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(360, 200)
+
+[node name="Coin_Patterns" parent="." instance=ExtResource("5_yemb6")]
+
+[node name="Obstacles" parent="." instance=ExtResource("6_el3d6")]
+
+[node name="Player" parent="." instance=ExtResource("7_epumv")]
+visible = false
+position = Vector2(145, 322)
+
+[node name="HUD" parent="." instance=ExtResource("8_vasb3")]
