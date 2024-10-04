@@ -10,6 +10,5 @@ var game_instance
 func logged_in(account : Dictionary, key):
 	player_data = account
 	player_key = key
-	print(account, key)
 	game_instance = game.instantiate()
 	add_child(game_instance)
