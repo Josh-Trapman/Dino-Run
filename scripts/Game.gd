@@ -38,6 +38,8 @@ var existing_data : Dictionary
 
 func _ready():
 	screen_size = get_window().size
+	# Creates a signal that triggers a function each time the window is resized
+	get_tree().root.size_changed.connect(resize)
 	# Sets all of the save variables
 	total_coins = player_data["UserData"]["Coins"]
 	high_score = player_data["UserData"]["HighScore"]
@@ -178,3 +180,7 @@ func save_data():
 	file.store_string(JSON.stringify(existing_data))
 	file.close()
 	file = null
+
+# Changes screen_size so the player cant see blank spaces when the ground moves
+func resize():
+	screen_size = get_window().size
