@@ -12,16 +12,18 @@ func _on_volume_value_changed(value : float):
 
 func _on_back_pressed():
 	visible = false
+	$StatsPage.visible = false
 	buttons.visible = true
 	main.game_instance.can_click = true
 
 
 func _on_stats_pressed():
-	player_data = game.player_data
-	$StatsPage/TotalRuns.text = player_data["UserData"]["TotalRuns"]
-	$StatsPage/HighScore.text = player_data["UserData"]["HighScore"]
-	$StatsPage/CoinsCollected.text = player_data["UserData"]["AllTimeCoinsCollected"]
-	$StatsPage/DistanceCovered.text = player_data["UserData"]["AllTimeDistance"]
-	$StatsPage/MostCoinsCollected.text = player_data["UserData"]["MostCoinsCollected"]
+	player_data = main.game_instance.player_data
+	$StatsPage.visible = true
+	$StatsPage/TotalRuns.text = str(player_data["UserData"]["TotalRuns"])
+	$StatsPage/HighScore.text = str(player_data["UserData"]["HighScore"])
+	$StatsPage/CoinsCollected.text = str(player_data["UserData"]["AllTimeCoinsCollected"])
+	$StatsPage/DistanceCovered.text = str(player_data["UserData"]["AllTimeDistance"])
+	$StatsPage/MostCoinsCollected.text = str(player_data["UserData"]["MostCoinsCollected"])
 	
 	

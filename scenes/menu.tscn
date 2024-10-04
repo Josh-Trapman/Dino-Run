@@ -714,6 +714,7 @@ theme_override_fonts/font = ExtResource("8_xxfdu")
 text = "Back"
 
 [node name="StatsPage" type="Control" parent="Main/Settings"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -843,6 +844,15 @@ theme_override_fonts/font = ExtResource("8_xxfdu")
 text = "0"
 label_settings = ExtResource("15_ma70i")
 horizontal_alignment = 2
+
+[node name="Back" type="Button" parent="Main/Settings/StatsPage"]
+texture_filter = 1
+offset_left = 160.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Back"
 
 [node name="Skins" type="Control" parent="Main"]
 layout_mode = 3
@@ -1075,5 +1085,6 @@ libraries = {
 [connection signal="value_changed" from="Main/Settings/Volume" to="Main/Settings" method="_on_volume_value_changed"]
 [connection signal="pressed" from="Main/Settings/Stats" to="Main/Settings" method="_on_stats_pressed"]
 [connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]
+[connection signal="pressed" from="Main/Settings/StatsPage/Back" to="Main/Settings" method="_on_back_pressed"]
 [connection signal="pressed" from="Pause/Resume" to="Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/EndRun" to="Pause" method="_on_end_run_pressed"]
