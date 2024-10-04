@@ -17,6 +17,7 @@ func _on_register_pressed():
 			# Writes all of the accounts back into the file, including the newly created account
 			var file = FileAccess.open(save_path, FileAccess.WRITE)
 			file.store_string(JSON.stringify(existing_data))
+			print(typeof(file))
 			# Closes the file to free up memory
 			file.close()
 			file = null
@@ -29,7 +30,7 @@ func _on_register_pressed():
 func load_file():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	if file:
-		if typeof(file) != 24:
+		if typeof(file) != 0:
 			existing_data = JSON.parse_string(file.get_as_text())
 			file.close()
 			file = null
@@ -44,6 +45,7 @@ func load_file():
 		file.store_string(JSON.stringify({}))
 		file.close()
 		file = null
+
 
 
 func check_username_available():

@@ -29,7 +29,7 @@ func _on_login_pressed():
 func load_file():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	if file:
-		if typeof(file) != 24:
+		if typeof(file) != 0:
 			existing_data = JSON.parse_string(file.get_as_text())
 			file.close()
 			file = null
