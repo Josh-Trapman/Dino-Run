@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b05yl1f3welf3"]
+[gd_scene load_steps=31 format=3 uid="uid://b05yl1f3welf3"]
 
 [ext_resource type="Script" path="res://scripts/Data.gd" id="1_5swjr"]
 [ext_resource type="Texture2D" uid="uid://cqji3yffntice" path="res://assets/eye.png" id="3_8ylt3"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="14_0hpur"]
 [ext_resource type="Script" path="res://scripts/Settings.gd" id="15_e7fr2"]
 [ext_resource type="LabelSettings" uid="uid://bmwat70l5eqih" path="res://assets/font.tres" id="15_ma70i"]
-[ext_resource type="Script" path="res://scripts/StatsPage.gd" id="17_f8l3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nr6b"]
 outline_size = 6
@@ -718,7 +717,6 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("17_f8l3g")
 
 [node name="Panel" type="Panel" parent="Main/Settings/StatsPage"]
 layout_mode = 1
@@ -847,6 +845,7 @@ horizontal_alignment = 2
 
 [node name="Back" type="Button" parent="Main/Settings/StatsPage"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 160.0
 offset_top = 88.0
 offset_right = 224.0
