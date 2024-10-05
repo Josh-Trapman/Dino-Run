@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal run_ended
+
 func just_paused(total_coins):
 	get_tree().paused = true
 	visible = true
@@ -18,5 +20,6 @@ func _on_end_run_pressed():
 	Global.game_instance.find_child("HUD").visible = false
 	Global.game_instance.update_data()
 	Global.game_instance.save_data()
+	emit_signal("run_ended")
 	
 

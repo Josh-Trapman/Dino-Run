@@ -6,35 +6,50 @@ const GRAVITY = 1000
 
 func _ready():
 	if Global.player_data["UserData"]["EquippedSkin"] == "Bluezoid":
-		$BlueDino.visible = true
-		$RedDino.visible = false
+		for child in $Animations.get_children():
+			child.visible = false
+		$Animations/BlueDino.visible = true
+		$Animations/BlueWings.visible = true
+		Global.current_skin = $Animations/BlueDino
+		Global.current_wings = $Animations/BlueWings
+	
 	elif Global.player_data["UserData"]["EquippedSkin"] == "BlazeRex":
-		$RedDino.visible = true
-		$BlueDino.visible = false
+		for child in $Animations.get_children():
+			child.visible = false
+		$Animations/RedDino.visible = true
+		$Animations/RedWings.visible = true
+		Global.current_skin = $Animations/RedDino
+		Global.current_wings = $Animations/RedWings
+	
 	elif Global.player_data["UserData"]["EquippedSkin"] == "LeafRex":
-		$BlueDino.visible = true
-		$RedDino.visible = false
+		for child in $Animations.get_children():
+			child.visible = false
+		$Animations/GreenDino.visible = true
+		$Animations/GreenWings.visible = true
+		Global.current_skin = $Animations/GreenDino
+		Global.current_wings = $Animations/GreenWings
+
 
 func _physics_process(delta):
 	# Check if the game is running
 	if not get_parent().game_running:
-		$BlueDino.play("Idle")
-		$BlueWings.play("Idle")
+		Global.current_skin.play("Idle")
+		Global.current_wings.play("Idle")
 	else:
 		# Apply gravity and change animations
 		if not is_on_floor():
 			if not Input.is_action_pressed("Space"):
-				$BlueWings.play("Fall")
+				Global.current_wings.play("Fall")
 				if velocity.y < 500:
 					velocity.y += GRAVITY * delta
 				else:
 					velocity.y = 500
 			else:
-				$BlueDino.play("Fly")
-				$BlueWings.play("Fly")
+				Global.current_skin.play("Fly")
+				Global.current_wings.play("Fly")
 		else:
-			$BlueDino.play("Run")
-			$BlueWings.play("Run")
+			Global.current_skin.play("Run")
+			Global.current_wings.play("Run")
 			
 		# Handle flying
 		if Input.is_action_pressed("Space"):

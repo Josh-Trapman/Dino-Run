@@ -34,7 +34,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p81t2"]
-bg_color = Color(0.0901961, 0.203922, 0.196078, 1)
+bg_color = Color(0.0901961, 0.203922, 0.196078, 0.780392)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -1177,6 +1177,7 @@ libraries = {
 [connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
 [connection signal="pressed" from="Main/Buttons/Skins" to="Main" method="_on_skins_pressed"]
 [connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Buttons/Logout" to="Main" method="_on_logout_pressed"]
 [connection signal="value_changed" from="Main/Settings/Volume" to="Main/Settings" method="_on_volume_value_changed"]
 [connection signal="pressed" from="Main/Settings/Stats" to="Main/Settings" method="_on_stats_pressed"]
 [connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]

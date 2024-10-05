@@ -2,6 +2,8 @@ extends Control
 
 @onready var buttons = get_parent().find_child("Buttons")
 
+signal skin_changed
+
 # Equips Blue skin
 func _on_blue_equip_pressed():
 	Global.player_data["UserData"]["EquippedSkin"] = "Bluezoid"
@@ -9,6 +11,15 @@ func _on_blue_equip_pressed():
 	
 	$SkinBlue/SkinEquipped.visible = true
 	$SkinBlue/EquipSkin.visible = false
+	
+	if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
+		$SkinRed/SkinEquipped.visible = false
+		$SkinRed/EquipSkin.visible = true
+	if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
+		$SkinGreen/SkinEquipped.visible = false
+		$SkinGreen/EquipSkin.visible = true
+	
+	emit_signal("skin_changed")
 
 
 # Buys Red skin
@@ -33,6 +44,15 @@ func _on_red_equip_pressed():
 	
 	$SkinRed/SkinEquipped.visible = true
 	$SkinRed/EquipSkin.visible = false
+	
+	if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
+		$SkinBlue/SkinEquipped.visible = false
+		$SkinBlue/EquipSkin.visible = true
+	if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
+		$SkinGreen/SkinEquipped.visible = false
+		$SkinGreen/EquipSkin.visible = true
+	
+	emit_signal("skin_changed")
 
 
 # Buys Green skin
@@ -57,6 +77,15 @@ func _on_green_equip_pressed():
 	
 	$SkinGreen/SkinEquipped.visible = true
 	$SkinGreen/EquipSkin.visible = false
+	
+	if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
+		$SkinBlue/SkinEquipped.visible = false
+		$SkinBlue/EquipSkin.visible = true
+	if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
+		$SkinRed/SkinEquipped.visible = false
+		$SkinRed/EquipSkin.visible = true
+	
+	emit_signal("skin_changed")
 
 
 # Closes page
