@@ -579,7 +579,6 @@ text = "Login"
 flat = true
 
 [node name="Main" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("14_0hpur")
 
 [node name="Panel" type="Panel" parent="Main"]
@@ -871,7 +870,6 @@ theme_override_fonts/font = ExtResource("8_xxfdu")
 text = "Back"
 
 [node name="Skins" type="Control" parent="Main"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
@@ -889,6 +887,14 @@ anchor_right = 8.0
 anchor_bottom = 4.0
 offset_top = -0.0159988
 theme_override_styles/panel = SubResource("StyleBoxFlat_ojycx")
+
+[node name="Back" type="Button" parent="Main/Skins"]
+layout_mode = 0
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Back"
 
 [node name="SkinBlue" type="Control" parent="Main/Skins"]
 anchors_preset = 0
@@ -1173,6 +1179,7 @@ libraries = {
 [connection signal="pressed" from="Main/Settings/Stats" to="Main/Settings" method="_on_stats_pressed"]
 [connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]
 [connection signal="pressed" from="Main/Settings/StatsPage/Back" to="Main/Settings" method="_on_back_pressed"]
+[connection signal="pressed" from="Main/Skins/Back" to="Main/Skins" method="_on_back_pressed"]
 [connection signal="pressed" from="Main/Skins/SkinBlue/EquipSkin" to="Main/Skins" method="_on_blue_equip_pressed"]
 [connection signal="pressed" from="Main/Skins/SkinRed/Buy" to="Main/Skins" method="_on_red_buy_pressed"]
 [connection signal="pressed" from="Main/Skins/SkinRed/EquipSkin" to="Main/Skins" method="_on_red_equip_pressed"]

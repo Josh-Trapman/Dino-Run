@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bdc247s5dv1jq"]
+[gd_scene load_steps=42 format=3 uid="uid://bdc247s5dv1jq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rf8us"]
 [ext_resource type="Texture2D" uid="uid://dfg4qwq45t2bn" path="res://assets/wingsa.png" id="3_gamas"]
 [ext_resource type="Texture2D" uid="uid://dw0n1hmpyflsc" path="res://assets/DinoSprites - X(@ScissorMarks).png" id="3_pji1t"]
 [ext_resource type="AudioStream" uid="uid://brykxpat0wkui" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav" id="3_ysatl"]
+[ext_resource type="Texture2D" uid="uid://dt7l50dhdqaxj" path="res://assets/DinoSprites - Red.png" id="4_pb86u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbwur"]
 atlas = ExtResource("3_pji1t")
@@ -98,6 +99,101 @@ animations = [{
 "loop": true,
 "name": &"Run",
 "speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udqvm"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o06ox"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oft1"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scmgm"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjkqw"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxcie"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv5mr"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0be8"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tugf4"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fukb"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6l0t"]
+atlas = ExtResource("4_pb86u")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yin0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udqvm")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o06ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oft1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scmgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjkqw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxcie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv5mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0be8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tugf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fukb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6l0t")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x05l4"]
@@ -221,14 +317,21 @@ script = ExtResource("1_rf8us")
 stream = ExtResource("3_ysatl")
 volume_db = -20.0
 
-[node name="Dino" type="AnimatedSprite2D" parent="."]
+[node name="BlueDino" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(2.33333, -2.33333)
 sprite_frames = SubResource("SpriteFrames_63v3v")
-animation = &"Idle"
+animation = &"Run"
 autoplay = "Idle"
 
-[node name="Wings" type="AnimatedSprite2D" parent="."]
+[node name="RedDino" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(2.33333, -2.33333)
+sprite_frames = SubResource("SpriteFrames_yin0a")
+animation = &"Run"
+
+[node name="BlueWings" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-2.33333, 0.333333)
 scale = Vector2(0.333, 0.333)

@@ -1,10 +1,7 @@
 extends Control
 
-var player_data : Dictionary
+@onready var buttons = get_parent().find_child("Buttons")
 
-func _ready():
-	player_data = owner.owner.game_instance.player_data
-	
 func _on_blue_equip_pressed():
 	$SkinBlue/SkinEquipped.visible = true
 	$SkinBlue/EquipSkin.visible = false
@@ -24,3 +21,9 @@ func _on_green_buy_pressed():
 
 func _on_green_equip_pressed():
 	pass # Replace with function body.
+
+
+func _on_back_pressed():
+	visible = false
+	Global.can_click = true
+	buttons.visible = true
