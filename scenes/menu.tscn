@@ -929,6 +929,7 @@ texture = ExtResource("18_nydmy")
 region_rect = Rect2(0, 0, 24, 24)
 
 [node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 280.0
@@ -938,7 +939,6 @@ offset_bottom = 40.0
 texture = ExtResource("19_lctb4")
 
 [node name="EquipSkin" type="Button" parent="Main/Skins/SkinBlue"]
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 264.0

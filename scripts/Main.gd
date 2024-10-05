@@ -4,7 +4,8 @@ extends Node
 
 var save_path = "user://save.dat"
 
-
 func logged_in():
 	Global.game_instance = game.instantiate()
 	add_child(Global.game_instance)
+	# Updates player skins page
+	$Menu/Main/Skins.call_deferred("load_in")
