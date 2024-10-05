@@ -17,6 +17,7 @@ func _on_red_buy_pressed():
 		Global.player_data["UserData"]["Skins"]["BlazeRex"] = true
 		Global.game_instance.save_data()
 		
+		# Sets the skin to an equippable state
 		$SkinRed/Price.visible = false
 		$SkinRed/Buy.visible = false
 		$SkinRed/EquipSkin.visible = true
@@ -44,43 +45,50 @@ func _on_back_pressed():
 
 
 func load_in():
+	# Set Blue skin to equipped state
 	if Global.player_data["UserData"]["EquippedSkin"] == "Bluezoid":
 		$SkinBlue/SkinEquipped.visible = true
 		$SkinBlue/EquipSkin.visible = false
 		
+		# If Red skin is owned sets it to an equippable state
 		if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
 			$SkinRed/EquipSkin.visible = true
 			$SkinRed/Buy.visible = false
 			$SkinRed/Price.visible = false
 		
+		# If Green skin is owned sets it to an equippable state
 		if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
 			$SkinGreen/EquipSkin.visible = true
 			$SkinGreen/Buy.visible = false
 			$SkinGreen/Price.visible = false
-	
+		
+	# Set Red skin to equipped state
 	elif Global.player_data["UserData"]["EquippedSkin"] == "BlazeRex":
 		$SkinRed/SkinEquipped.visible = true
-		$SkinRed/EquipSkin.visible = false
+		$SkinRed/Buy.visible = false
+		$SkinRed/Price.visible = false
 		
+		# Sets Blue skin to an equippable state
 		if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
 			$SkinBlue/EquipSkin.visible = true
-			$SkinBlue/Buy.visible = false
-			$SkinBlue/Price.visible = false
 		
+		# If Green skin is owned sets it to an equippable state
 		if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
 			$SkinGreen/EquipSkin.visible = true
 			$SkinGreen/Buy.visible = false
 			$SkinGreen/Price.visible = false
-			
+		
+	# Set Green skin to equipped state
 	elif Global.player_data["UserData"]["EquippedSkin"] == "LeafRex":
 		$SkinGreen/SkinEquipped.visible = true
-		$SkinGreen/EquipSkin.visible = false
+		$SkinGreen/Buy.visible = false
+		$SkinGreen/Price.visible = false
 		
+		# Sets Blue skin to an equippable state
 		if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
 			$SkinBlue/EquipSkin.visible = true
-			$SkinBlue/Buy.visible = false
-			$SkinBlue/Price.visible = false
 		
+		# If Red skin is owned sets it to an equippable state
 		if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
 			$SkinRed/EquipSkin.visible = true
 			$SkinRed/Buy.visible = false
