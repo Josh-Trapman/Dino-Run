@@ -21,9 +21,9 @@
 [ext_resource type="LabelSettings" uid="uid://bmwat70l5eqih" path="res://assets/font.tres" id="15_ma70i"]
 [ext_resource type="Script" path="res://scripts/Skins.gd" id="17_tqrqk"]
 [ext_resource type="Texture2D" uid="uid://dw0n1hmpyflsc" path="res://assets/DinoSprites - X(@ScissorMarks).png" id="18_nydmy"]
-[ext_resource type="Texture2D" uid="uid://dlkn4sg53vohp" path="res://assets/Check_Mark.png" id="19_lctb4"]
-[ext_resource type="Texture2D" uid="uid://dt7l50dhdqaxj" path="res://assets/DinoSprites - Red.png" id="20_n73ms"]
-[ext_resource type="Texture2D" uid="uid://b1uabo0vxjkxt" path="res://assets/DinoSprites - Green.png" id="21_4fuh2"]
+[ext_resource type="Texture2D" uid="uid://cyo5urtieo5jq" path="res://assets/Check_Mark.png" id="19_lctb4"]
+[ext_resource type="Texture2D" uid="uid://bw55tdcgrt3gh" path="res://assets/DinoSprites - Red.png" id="20_n73ms"]
+[ext_resource type="Texture2D" uid="uid://dncnf1rytt7ad" path="res://assets/DinoSprites - Green.png" id="21_4fuh2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nr6b"]
 outline_size = 6
@@ -34,7 +34,7 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p81t2"]
-bg_color = Color(0.0901961, 0.203922, 0.196078, 1)
+bg_color = Color(0.0901961, 0.203922, 0.196078, 0.780392)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -870,6 +870,7 @@ theme_override_fonts/font = ExtResource("8_xxfdu")
 text = "Back"
 
 [node name="Skins" type="Control" parent="Main"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
@@ -915,7 +916,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Blue"
+text = "Bluezoid"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
@@ -927,6 +928,7 @@ texture = ExtResource("18_nydmy")
 region_rect = Rect2(0, 0, 24, 24)
 
 [node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 280.0
@@ -936,7 +938,6 @@ offset_bottom = 40.0
 texture = ExtResource("19_lctb4")
 
 [node name="EquipSkin" type="Button" parent="Main/Skins/SkinBlue"]
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 264.0
@@ -978,7 +979,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Red"
+text = "Blaze Rex"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinRed"]
@@ -1052,7 +1053,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Green"
+text = "Leaf Rex"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
@@ -1175,6 +1176,7 @@ libraries = {
 [connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
 [connection signal="pressed" from="Main/Buttons/Skins" to="Main" method="_on_skins_pressed"]
 [connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Buttons/Logout" to="Main" method="_on_logout_pressed"]
 [connection signal="value_changed" from="Main/Settings/Volume" to="Main/Settings" method="_on_volume_value_changed"]
 [connection signal="pressed" from="Main/Settings/Stats" to="Main/Settings" method="_on_stats_pressed"]
 [connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]

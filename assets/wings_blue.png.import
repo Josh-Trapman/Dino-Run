@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbaoiemm5ccwd"
-path="res://.godot/imported/wings.png-126d40016477f6a4157d2e25d23fc8fa.ctex"
+uid="uid://dfg4qwq45t2bn"
+path="res://.godot/imported/wings_blue.png-bc9c2130aa83dfc81d5b3162fa70e47f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wings.png"
-dest_files=["res://.godot/imported/wings.png-126d40016477f6a4157d2e25d23fc8fa.ctex"]
+source_file="res://assets/wings_blue.png"
+dest_files=["res://.godot/imported/wings_blue.png-bc9c2130aa83dfc81d5b3162fa70e47f.ctex"]
 
 [params]
 

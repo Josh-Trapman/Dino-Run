@@ -22,7 +22,6 @@ var screen_size = Global.screen_size
 var game_running : bool = false
 var coins_collected : int
 var already_spawned : bool = false
-var can_click = Global.can_click
 
 # Save variables
 var total_coins : int
@@ -63,8 +62,8 @@ func new_game():
 	$Ground.position = GROUND_START_POS
 	$Ceiling.position = CEILING_START_POS
 	$HUD/Score.text = str(score).pad_zeros(4) + "m"
-	$Player/Dino.speed_scale = 1
-	$Player/Wings.speed_scale = 1
+	Global.current_skin.speed_scale = 1
+	Global.current_wings.speed_scale = 1
 	show_coins()
 
 
@@ -75,13 +74,13 @@ func _process(delta):
 			speed = START_SPEED + score / SPEED_MODIFIER
 		
 		# Increases the animation speed when running
-		if $Player/Dino.animation == "Run":
-			$Player/Dino.speed_scale = speed / 100
-			$Player/Wings.speed_scale = speed / 100
+		if Global.current_skin.animation == "Run":
+			Global.current_skin.speed_scale = speed / 100
+			Global.current_wings.speed_scale = speed / 100
 		# Otherwise sets the speed scale to 1
 		else:
-			$Player/Dino.speed_scale = 1
-			$Player/Wings.speed_scale = 1
+			Global.current_skin.speed_scale = 1
+			Global.current_wings.speed_scale = 1
 		
 		# Move player and camera
 		$Player.position.x += speed * delta

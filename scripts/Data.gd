@@ -12,10 +12,17 @@ var existing_data : Dictionary
 func _on_register_screen_pressed():
 	$Login.visible = false
 	$Register.visible = true
+	# Reset fields
+	$Login/Username.text = ""
+	$Login/Password.text = ""
 
 func _on_login_screen_pressed():
 	$Login.visible = true
 	$Register.visible = false
+	# Reset fields
+	$Register/Username.text = ""
+	$Register/Password.text = ""
+	$Register/ConfirmPassword.text = ""
 
 func _on_login_pressed():
 	load_file()
@@ -27,6 +34,10 @@ func _on_login_pressed():
 		get_parent().logged_in()
 		# Removes the log in screen
 		$Transition.transition()
+	
+	# Reset fields after attempted login
+	$Login/Username.text = ""
+	$Login/Password.text = ""
 
 func load_file():
 	var file = FileAccess.open(save_path, FileAccess.READ)
