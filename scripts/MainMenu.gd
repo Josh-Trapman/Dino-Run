@@ -26,3 +26,8 @@ func _on_settings_pressed():
 	$Buttons.visible = false
 	$Settings.visible = true
 	main.game_instance.can_click = false
+
+func _on_skins_pressed():
+	$Buttons.visible = false
+	$Skins.visible = true
+	main.game_instance.can_click = false
