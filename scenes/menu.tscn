@@ -579,7 +579,6 @@ text = "Login"
 flat = true
 
 [node name="Main" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("14_0hpur")
 
 [node name="Panel" type="Panel" parent="Main"]

@@ -1,8 +1,8 @@
 extends Area2D
 
 @onready var camera = get_parent().get_parent().find_child("Camera")
-@onready var screen_size = get_parent().get_parent().screen_size
 
+var screen_size = Global.screen_size
 const speed = 300
 
  #Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -43,4 +43,3 @@ func _on_skin_changed():
 		Global.current_skin.visible = true
 		Global.current_wings.visible = true
 	
-	

@@ -57,4 +57,3 @@ func start_game():
 	$Label.visible = false
 	$AnimationPlayer.play("start_game")
 
-
