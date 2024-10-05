@@ -74,13 +74,13 @@ func _process(delta):
 			speed = START_SPEED + score / SPEED_MODIFIER
 		
 		# Increases the animation speed when running
-		if $Player/Dino.animation == "Run":
-			$Player/Dino.speed_scale = speed / 100
-			$Player/Wings.speed_scale = speed / 100
+		if $Player/BlueDino.animation == "Run":
+			$Player/BlueDino.speed_scale = speed / 100
+			$Player/BlueWings.speed_scale = speed / 100
 		# Otherwise sets the speed scale to 1
 		else:
-			$Player/Dino.speed_scale = 1
-			$Player/Wings.speed_scale = 1
+			$Player/BlueDino.speed_scale = 1
+			$Player/BlueWings.speed_scale = 1
 		
 		# Move player and camera
 		$Player.position.x += speed * delta
