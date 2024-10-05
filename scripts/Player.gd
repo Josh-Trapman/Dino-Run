@@ -18,23 +18,23 @@ func _ready():
 func _physics_process(delta):
 	# Check if the game is running
 	if not get_parent().game_running:
-		$Dino.play("Idle")
-		$Wings.play("Idle")
+		$BlueDino.play("Idle")
+		$BlueWings.play("Idle")
 	else:
 		# Apply gravity and change animations
 		if not is_on_floor():
 			if not Input.is_action_pressed("Space"):
-				$Wings.play("Fall")
+				$BlueWings.play("Fall")
 				if velocity.y < 500:
 					velocity.y += GRAVITY * delta
 				else:
 					velocity.y = 500
 			else:
-				$Dino.play("Fly")
-				$Wings.play("Fly")
+				$BlueDino.play("Fly")
+				$BlueWings.play("Fly")
 		else:
-			$Dino.play("Run")
-			$Wings.play("Run")
+			$BlueDino.play("Run")
+			$BlueWings.play("Run")
 			
 		# Handle flying
 		if Input.is_action_pressed("Space"):

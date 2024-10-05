@@ -7,6 +7,7 @@ func _on_blue_equip_pressed():
 	$SkinBlue/EquipSkin.visible = false
 
 func _on_red_buy_pressed():
+	print(Global.player_data)
 	# Reduces the players coin balance and unlocks the skin
 	if Global.player_data["UserData"]["Coins"] >= 500:
 		Global.player_data["UserData"]["Coins"] -= 500

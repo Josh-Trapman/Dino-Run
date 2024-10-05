@@ -76,12 +76,12 @@ func create_account():
 				"AllTimeCoinsCollected" : 0,
 				"AllTimeDistance" : 0,
 				"Coins" : 0,
+				"EquippedSkin" : "Bluezoid",
 				"HighScore" : 0,
 				"MostCoinsCollected" : 0,
 				"Skins" : {
 					"Bluezoid" : true,
-					"Leafy" : false,
-					"GoldieRaptor" : false,
+					"LeafRex" : false,
 					"BlazeRex" : false
 				},
 				"TotalRuns" : 0

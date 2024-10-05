@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var player_data = get_parent().player_data
-@onready var player_key : String = get_parent().player_key
 @onready var menu_screens = get_parent().find_child("Menu")
 
 # Node start positions
@@ -20,11 +18,10 @@ const SPEED_MODIFIER : int = 100
 const SCORE_MODIFIER : int = 3
 var speed : float
 var score : int
-var screen_size : Vector2i
+var screen_size = Global.screen_size
 var game_running : bool = false
 var coins_collected : int
 var already_spawned : bool = false
-var can_click : bool = true
 
 # Save variables
 var total_coins : int
@@ -37,14 +34,13 @@ var existing_data : Dictionary
 
 
 func _ready():
-	screen_size = Vector2i(720, 400)
 	# Sets all of the save variables
-	total_coins = player_data["UserData"]["Coins"]
-	high_score = player_data["UserData"]["HighScore"]
-	total_runs = player_data["UserData"]["TotalRuns"]
-	most_coins_collected = player_data["UserData"]["MostCoinsCollected"]
-	all_time_coins = player_data["UserData"]["AllTimeCoinsCollected"]
-	all_time_distance = player_data["UserData"]["AllTimeDistance"]
+	total_coins = Global.player_data["UserData"]["Coins"]
+	high_score = Global.player_data["UserData"]["HighScore"]
+	total_runs = Global.player_data["UserData"]["TotalRuns"]
+	most_coins_collected = Global.player_data["UserData"]["MostCoinsCollected"]
+	all_time_coins = Global.player_data["UserData"]["AllTimeCoinsCollected"]
+	all_time_distance = Global.player_data["UserData"]["AllTimeDistance"]
 
 func new_game():
 	get_tree().paused = false
@@ -66,8 +62,8 @@ func new_game():
 	$Ground.position = GROUND_START_POS
 	$Ceiling.position = CEILING_START_POS
 	$HUD/Score.text = str(score).pad_zeros(4) + "m"
-	$Player/Dino.speed_scale = 1
-	$Player/Wings.speed_scale = 1
+	$Player/BlueDino.speed_scale = 1
+	$Player/BlueWings.speed_scale = 1
 	show_coins()
 
 
@@ -107,7 +103,7 @@ func _process(delta):
 	else:
 		$HUD.visible = false
 		
-		if Input.is_action_just_pressed("Space") and can_click:
+		if Input.is_action_just_pressed("Space") and Global.can_click:
 			game_running = true
 			$HUD.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -153,15 +149,15 @@ func spawn_items():
 
 func update_data():
 	total_coins += coins_collected
-	player_data["UserData"]["Coins"] = total_coins
-	player_data["UserData"]["AllTimeCoinsCollected"] += coins_collected
-	player_data["UserData"]["TotalRuns"] += 1
-	player_data["UserData"]["AllTimeDistance"] += int(str(score).left(-2))
-	if player_data["UserData"]["MostCoinsCollected"] < coins_collected:
-		player_data["UserData"]["MostCoinsCollected"] = coins_collected
-	if int(str(score).left(-2)) > player_data["UserData"]["HighScore"]:
-		player_data["UserData"]["HighScore"] = int(str(score).left(-2))
-	high_score = player_data["UserData"]["HighScore"]
+	Global.player_data["UserData"]["Coins"] = total_coins
+	Global.player_data["UserData"]["AllTimeCoinsCollected"] += coins_collected
+	Global.player_data["UserData"]["TotalRuns"] += 1
+	Global.player_data["UserData"]["AllTimeDistance"] += int(str(score).left(-2))
+	if Global.player_data["UserData"]["MostCoinsCollected"] < coins_collected:
+		Global.player_data["UserData"]["MostCoinsCollected"] = coins_collected
+	if int(str(score).left(-2)) > Global.player_data["UserData"]["HighScore"]:
+		Global.player_data["UserData"]["HighScore"] = int(str(score).left(-2))
+	high_score = Global.player_data["UserData"]["HighScore"]
 	
 	save_data()
 
@@ -172,20 +168,10 @@ func save_data():
 	file.close()
 	file = null
 	
-	existing_data[player_key] = player_data
+	existing_data[str(Global.player_key)] = Global.player_data
 	
 	file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(existing_data))
 	file.close()
 	file = null
 
-# Changes screen_size so the player cant see blank spaces when the ground moves
-func resize():
-	#print("hi")
-	#var new_screen_size : Vector2i = get_window().size
-	#if new_screen_size.y != screen_size.y:
-		#new_screen_size.x = new_screen_size.y * 1.8
-	#elif new_screen_size.x != screen_size.x:
-		#new_screen_size.y = new_screen_size.x * 5/9
-	#screen_size = new_screen_size
-	pass

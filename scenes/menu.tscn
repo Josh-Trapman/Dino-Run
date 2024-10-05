@@ -21,9 +21,9 @@
 [ext_resource type="LabelSettings" uid="uid://bmwat70l5eqih" path="res://assets/font.tres" id="15_ma70i"]
 [ext_resource type="Script" path="res://scripts/Skins.gd" id="17_tqrqk"]
 [ext_resource type="Texture2D" uid="uid://dw0n1hmpyflsc" path="res://assets/DinoSprites - X(@ScissorMarks).png" id="18_nydmy"]
-[ext_resource type="Texture2D" path="res://assets/Check_Mark.png" id="19_lctb4"]
-[ext_resource type="Texture2D" path="res://assets/DinoSprites - Red.png" id="20_n73ms"]
-[ext_resource type="Texture2D" path="res://assets/DinoSprites - Green.png" id="21_4fuh2"]
+[ext_resource type="Texture2D" uid="uid://cyo5urtieo5jq" path="res://assets/Check_Mark.png" id="19_lctb4"]
+[ext_resource type="Texture2D" uid="uid://bw55tdcgrt3gh" path="res://assets/DinoSprites - Red.png" id="20_n73ms"]
+[ext_resource type="Texture2D" uid="uid://dncnf1rytt7ad" path="res://assets/DinoSprites - Green.png" id="21_4fuh2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nr6b"]
 outline_size = 6
@@ -579,6 +579,7 @@ text = "Login"
 flat = true
 
 [node name="Main" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("14_0hpur")
 
 [node name="Panel" type="Panel" parent="Main"]
@@ -870,6 +871,7 @@ theme_override_fonts/font = ExtResource("8_xxfdu")
 text = "Back"
 
 [node name="Skins" type="Control" parent="Main"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
