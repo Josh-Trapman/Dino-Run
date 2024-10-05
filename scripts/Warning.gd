@@ -5,8 +5,8 @@ var bug = preload("res://scenes/bug.tscn")
 @onready var main = get_parent().get_parent()
 @onready var camera = main.find_child("Camera")
 @onready var player = main.find_child("Player")
-@onready var screen_size = main.screen_size
 
+var screen_size = Global.screen_size
 const speed = 180
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

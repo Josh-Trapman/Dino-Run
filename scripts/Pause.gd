@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@onready var main = owner.owner
-
 func just_paused(total_coins):
 	get_tree().paused = true
 	visible = true
@@ -17,8 +15,8 @@ func _on_resume_pressed():
 func _on_end_run_pressed():
 	visible = false
 	owner.find_child("Transition").transition()
-	main.game_instance.find_child("HUD").visible = false
-	main.game_instance.update_data()
-	main.game_instance.save_data()
+	Global.game_instance.find_child("HUD").visible = false
+	Global.game_instance.update_data()
+	Global.game_instance.save_data()
 	
 

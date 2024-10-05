@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b05yl1f3welf3"]
+[gd_scene load_steps=37 format=3 uid="uid://b05yl1f3welf3"]
 
 [ext_resource type="Script" path="res://scripts/Data.gd" id="1_5swjr"]
 [ext_resource type="Texture2D" uid="uid://cqji3yffntice" path="res://assets/eye.png" id="3_8ylt3"]
@@ -19,6 +19,11 @@
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="14_0hpur"]
 [ext_resource type="Script" path="res://scripts/Settings.gd" id="15_e7fr2"]
 [ext_resource type="LabelSettings" uid="uid://bmwat70l5eqih" path="res://assets/font.tres" id="15_ma70i"]
+[ext_resource type="Script" path="res://scripts/Skins.gd" id="17_tqrqk"]
+[ext_resource type="Texture2D" uid="uid://dw0n1hmpyflsc" path="res://assets/DinoSprites - X(@ScissorMarks).png" id="18_nydmy"]
+[ext_resource type="Texture2D" uid="uid://dlkn4sg53vohp" path="res://assets/Check_Mark.png" id="19_lctb4"]
+[ext_resource type="Texture2D" uid="uid://dt7l50dhdqaxj" path="res://assets/DinoSprites - Red.png" id="20_n73ms"]
+[ext_resource type="Texture2D" uid="uid://b1uabo0vxjkxt" path="res://assets/DinoSprites - Green.png" id="21_4fuh2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nr6b"]
 outline_size = 6
@@ -87,6 +92,18 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l7eo"]
+bg_color = Color(0, 0, 0, 0.270588)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Animation" id="Animation_eeomj"]
 length = 0.001
@@ -562,7 +579,6 @@ text = "Login"
 flat = true
 
 [node name="Main" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("14_0hpur")
 
 [node name="Panel" type="Panel" parent="Main"]
@@ -856,151 +872,228 @@ text = "Back"
 [node name="Skins" type="Control" parent="Main"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 192.0
+offset_top = 136.0
+offset_right = 240.0
+offset_bottom = 184.0
+script = ExtResource("17_tqrqk")
+
+[node name="Panel" type="Panel" parent="Main/Skins"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.0
+anchor_top = -1.333
+anchor_right = 8.0
+anchor_bottom = 4.0
+offset_top = -0.0159988
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojycx")
+
+[node name="Back" type="Button" parent="Main/Skins"]
+layout_mode = 0
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Back"
 
 [node name="SkinBlue" type="Control" parent="Main/Skins"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 48.0
+offset_bottom = 48.0
 
-[node name="Price" type="Label" parent="Main/Skins/SkinBlue"]
+[node name="Panel" type="Panel" parent="Main/Skins/SkinBlue"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4l7eo")
 
 [node name="Name" type="Label" parent="Main/Skins/SkinBlue"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Blue"
+label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("18_nydmy")
+region_rect = Rect2(0, 0, 24, 24)
 
 [node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 320.0
 offset_bottom = 40.0
-
-[node name="Buy" type="Button" parent="Main/Skins/SkinBlue"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+texture = ExtResource("19_lctb4")
 
 [node name="EquipSkin" type="Button" parent="Main/Skins/SkinBlue"]
+visible = false
+texture_filter = 1
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="SkinGreen" type="Control" parent="Main/Skins"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
+offset_left = 264.0
+offset_top = 8.0
+offset_right = 338.0
 offset_bottom = 40.0
-
-[node name="Price" type="Label" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Name" type="Label" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Buy" type="Button" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="EquipSkin" type="Button" parent="Main/Skins/SkinGreen"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+theme_override_font_sizes/font_size = 16
+text = "Equip"
 
 [node name="SkinRed" type="Control" parent="Main/Skins"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 64.0
+offset_right = 48.0
+offset_bottom = 112.0
+
+[node name="Panel" type="Panel" parent="Main/Skins/SkinRed"]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4l7eo")
 
 [node name="Price" type="Label" parent="Main/Skins/SkinRed"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
+offset_left = 272.0
+offset_right = 328.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "$500"
+label_settings = ExtResource("15_ma70i")
 
 [node name="Name" type="Label" parent="Main/Skins/SkinRed"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Red"
+label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinRed"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("20_n73ms")
+region_rect = Rect2(0, 0, 24, 24)
 
 [node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinRed"]
+visible = false
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 320.0
 offset_bottom = 40.0
+texture = ExtResource("19_lctb4")
 
 [node name="Buy" type="Button" parent="Main/Skins/SkinRed"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 264.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Buy"
 
 [node name="EquipSkin" type="Button" parent="Main/Skins/SkinRed"]
+visible = false
+texture_filter = 1
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 264.0
+offset_top = 8.0
+offset_right = 338.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+theme_override_font_sizes/font_size = 16
+text = "Equip"
 
-[node name="SkinYellow" type="Control" parent="Main/Skins"]
+[node name="SkinGreen" type="Control" parent="Main/Skins"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 128.0
+offset_right = 48.0
+offset_bottom = 176.0
 
-[node name="Price" type="Label" parent="Main/Skins/SkinYellow"]
+[node name="Panel" type="Panel" parent="Main/Skins/SkinGreen"]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4l7eo")
+
+[node name="Price" type="Label" parent="Main/Skins/SkinGreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 272.0
+offset_right = 328.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "$500"
+label_settings = ExtResource("15_ma70i")
 
-[node name="Name" type="Label" parent="Main/Skins/SkinYellow"]
+[node name="Name" type="Label" parent="Main/Skins/SkinGreen"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Green"
+label_settings = ExtResource("15_ma70i")
 
-[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinYellow"]
+[node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("21_4fuh2")
+region_rect = Rect2(0, 0, 24, 24)
+
+[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinGreen"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 320.0
 offset_bottom = 40.0
+texture = ExtResource("19_lctb4")
 
-[node name="SkinEquipped" type="NinePatchRect" parent="Main/Skins/SkinYellow"]
+[node name="Buy" type="Button" parent="Main/Skins/SkinGreen"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
+offset_left = 264.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+text = "Buy"
+
+[node name="EquipSkin" type="Button" parent="Main/Skins/SkinGreen"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 264.0
+offset_top = 8.0
+offset_right = 338.0
 offset_bottom = 40.0
-
-[node name="Buy" type="Button" parent="Main/Skins/SkinYellow"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="EquipSkin" type="Button" parent="Main/Skins/SkinYellow"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+theme_override_font_sizes/font_size = 16
+text = "Equip"
 
 [node name="Pause" type="CanvasLayer" parent="."]
 visible = false
@@ -1080,10 +1173,17 @@ libraries = {
 [connection signal="pressed" from="Register/Register" to="Register" method="_on_register_pressed"]
 [connection signal="pressed" from="Register/LoginScreen" to="." method="_on_login_screen_pressed"]
 [connection signal="timeout" from="Main/Timer" to="Main" method="_on_timer_timeout"]
+[connection signal="pressed" from="Main/Buttons/Skins" to="Main" method="_on_skins_pressed"]
 [connection signal="pressed" from="Main/Buttons/Settings" to="Main" method="_on_settings_pressed"]
 [connection signal="value_changed" from="Main/Settings/Volume" to="Main/Settings" method="_on_volume_value_changed"]
 [connection signal="pressed" from="Main/Settings/Stats" to="Main/Settings" method="_on_stats_pressed"]
 [connection signal="pressed" from="Main/Settings/Back" to="Main/Settings" method="_on_back_pressed"]
 [connection signal="pressed" from="Main/Settings/StatsPage/Back" to="Main/Settings" method="_on_back_pressed"]
+[connection signal="pressed" from="Main/Skins/Back" to="Main/Skins" method="_on_back_pressed"]
+[connection signal="pressed" from="Main/Skins/SkinBlue/EquipSkin" to="Main/Skins" method="_on_blue_equip_pressed"]
+[connection signal="pressed" from="Main/Skins/SkinRed/Buy" to="Main/Skins" method="_on_red_buy_pressed"]
+[connection signal="pressed" from="Main/Skins/SkinRed/EquipSkin" to="Main/Skins" method="_on_red_equip_pressed"]
+[connection signal="pressed" from="Main/Skins/SkinGreen/Buy" to="Main/Skins" method="_on_green_buy_pressed"]
+[connection signal="pressed" from="Main/Skins/SkinGreen/EquipSkin" to="Main/Skins" method="_on_green_equip_pressed"]
 [connection signal="pressed" from="Pause/Resume" to="Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/EndRun" to="Pause" method="_on_end_run_pressed"]
