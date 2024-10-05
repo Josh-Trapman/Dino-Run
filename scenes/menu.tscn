@@ -915,7 +915,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Blue"
+text = "Bluezoid"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinBlue"]
@@ -978,7 +978,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Red"
+text = "Blaze Rex"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinRed"]
@@ -1052,7 +1052,7 @@ offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
-text = "Green"
+text = "Leaf Rex"
 label_settings = ExtResource("15_ma70i")
 
 [node name="SkinImage" type="NinePatchRect" parent="Main/Skins/SkinGreen"]

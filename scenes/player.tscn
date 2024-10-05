@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfg4qwq45t2bn" path="res://assets/wingsa.png" id="3_gamas"]
 [ext_resource type="Texture2D" uid="uid://dw0n1hmpyflsc" path="res://assets/DinoSprites - X(@ScissorMarks).png" id="3_pji1t"]
 [ext_resource type="AudioStream" uid="uid://brykxpat0wkui" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav" id="3_ysatl"]
-[ext_resource type="Texture2D" path="res://assets/DinoSprites - Red.png" id="4_pb86u"]
+[ext_resource type="Texture2D" uid="uid://bw55tdcgrt3gh" path="res://assets/DinoSprites - Red.png" id="4_pb86u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbwur"]
 atlas = ExtResource("3_pji1t")

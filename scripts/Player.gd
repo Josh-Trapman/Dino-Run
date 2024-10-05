@@ -4,6 +4,17 @@ extends CharacterBody2D
 const FLY_VELOCITY = -850.0
 const GRAVITY = 1000
 
+func _ready():
+	if Global.player_data["UserData"]["EquippedSkin"] == "Bluezoid":
+		$BlueDino.visible = true
+		$RedDino.visible = false
+	elif Global.player_data["UserData"]["EquippedSkin"] == "BlazeRex":
+		$RedDino.visible = true
+		$BlueDino.visible = false
+	elif Global.player_data["UserData"]["EquippedSkin"] == "LeafRex":
+		$BlueDino.visible = true
+		$RedDino.visible = false
+
 func _physics_process(delta):
 	# Check if the game is running
 	if not get_parent().game_running:

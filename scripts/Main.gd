@@ -7,5 +7,4 @@ var save_path = "user://save.dat"
 
 func logged_in():
 	Global.game_instance = game.instantiate()
-	print(Global.game_instance)
 	add_child(Global.game_instance)
