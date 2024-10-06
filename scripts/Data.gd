@@ -66,11 +66,10 @@ func check_credentials():
 		# Check if the username matches
 		if credentials["Username"] == $Login/Username.text \
 		and credentials["Password"] == $Login/Password.text.sha256_text():
-			print("Login successful for user: ", credentials["Username"])
 			# Return true and the user data (including the index for later use)
 			return [true, existing_data[key], key]
 			
-	print("Please ensure that both your Username and Password are entered correctly")
+	$Login/ErrorLabel.text = "Incorrect Username or Password"
 	return [false, null]
 
 
