@@ -5,9 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://brykxpat0wkui" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav" id="3_ysatl"]
 [ext_resource type="Texture2D" uid="uid://bw55tdcgrt3gh" path="res://assets/DinoSprites - Red.png" id="4_pb86u"]
 [ext_resource type="Texture2D" uid="uid://dncnf1rytt7ad" path="res://assets/DinoSprites - Green.png" id="4_pfvp5"]
-[ext_resource type="Texture2D" path="res://assets/wings_blue.png" id="4_qviyd"]
-[ext_resource type="Texture2D" path="res://assets/wings_red.png" id="7_dmcg1"]
-[ext_resource type="Texture2D" path="res://assets/wings_green.png" id="8_2rfte"]
+[ext_resource type="Texture2D" uid="uid://dfg4qwq45t2bn" path="res://assets/wings_blue.png" id="4_qviyd"]
+[ext_resource type="Texture2D" uid="uid://b65jxl1wih7k6" path="res://assets/wings_red.png" id="7_dmcg1"]
+[ext_resource type="Texture2D" uid="uid://drqqxmhb2wm7i" path="res://assets/wings_green.png" id="8_2rfte"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbwur"]
 atlas = ExtResource("3_pji1t")

@@ -9,4 +9,5 @@ func spawn():
 	var warning_instance = warning.instantiate()
 	warning_instance.position.y = player.position.y
 	add_child(warning_instance)
+	
 

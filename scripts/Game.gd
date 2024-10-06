@@ -128,8 +128,8 @@ func show_coins():
 
 # Randomly spawns an obstacle or coin pattern when the player's score is a multiple of 50
 func spawn_items():
-	# Spawns something every 50 metres
-	if (score / 100) % 50 == 0:
+	# Spawns something every 25 metres
+	if (score / 100) % 25 == 0:
 		# Checks if something has already been spawned so nothing overlaps
 		if not already_spawned:
 			# Gets a random integer 
