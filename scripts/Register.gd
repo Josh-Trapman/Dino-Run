@@ -17,14 +17,13 @@ func _on_register_pressed():
 			# Writes all of the accounts back into the file, including the newly created account
 			var file = FileAccess.open(save_path, FileAccess.WRITE)
 			file.store_string(JSON.stringify(existing_data))
-			print(typeof(file))
 			# Closes the file to free up memory
 			file.close()
 			file = null
 		else:
-			print("Passwords don't match")
+			$ErrorLabel.text = "Passwords must match"
 	else:
-		print("Username is already in use")
+		$ErrorLabel.text = "Username is already in use"
 
 
 func load_file():
