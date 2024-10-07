@@ -8,6 +8,7 @@ func _ready():
 	# Receives signal when skin is changed
 	$Menu/Main/Skins.connect("skin_changed", _on_skin_changed)
 
+
 func logged_in():
 	Global.game_instance = game.instantiate()
 	add_child(Global.game_instance)
@@ -42,4 +43,3 @@ func _on_skin_changed():
 		Global.current_wings = $Game/Player/Animations/GreenWings
 		Global.current_skin.visible = true
 		Global.current_wings.visible = true
-	

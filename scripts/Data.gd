@@ -68,8 +68,13 @@ func check_credentials():
 		and credentials["Password"] == $Login/Password.text.sha256_text():
 			# Return true and the user data (including the index for later use)
 			return [true, existing_data[key], key]
-			
-	$Login/ErrorLabel.text = "Incorrect Username or Password"
+	update_error_label()
 	return [false, null]
 
 
+func update_error_label():
+	# Display Error message
+	$Login/ErrorLabel.text = "Incorrect Username or Password"
+	# Clear the error message after 2 seconds
+	await get_tree().create_timer(2).timeout
+	$Login/ErrorLabel.text = ""

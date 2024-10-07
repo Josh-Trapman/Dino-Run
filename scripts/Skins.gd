@@ -30,6 +30,8 @@ func _on_red_buy_pressed():
 		Global.player_data["UserData"]["Coins"] = current_coins - 500
 		Global.player_data["UserData"]["Skins"]["BlazeRex"] = true
 		Global.game_instance.save_data()
+		$"../Main/TotalCoins2".text = Global.player_data["UserData"]["Coins"]
+		$"../Main/TotalCoins2/CoinIcon".position.x = len(str(Global.player_data["UserData"]["Coins"])) * -24
 		
 		# Sets the skin to an equippable state
 		$SkinRed/Price.visible = false
@@ -63,6 +65,8 @@ func _on_green_buy_pressed():
 		Global.player_data["UserData"]["Coins"] = current_coins - 500
 		Global.player_data["UserData"]["Skins"]["LeafRex"] = true
 		Global.game_instance.save_data()
+		$"../Main/TotalCoins2".text = str(Global.player_data["UserData"]["Coins"])
+		$"../Main/TotalCoins2/CoinIcon".position.x = len(str(Global.player_data["UserData"]["Coins"])) * -24
 		
 		# Sets the skin to an equippable state
 		$SkinGreen/Price.visible = false

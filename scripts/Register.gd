@@ -21,9 +21,9 @@ func _on_register_pressed():
 			file.close()
 			file = null
 		else:
-			$ErrorLabel.text = "Passwords must match"
+			return await update_error_label("Passwords must match")
 	else:
-		$ErrorLabel.text = "Username is already in use"
+		return await update_error_label("Username is already in use")
 
 
 func load_file():
@@ -44,7 +44,6 @@ func load_file():
 		file.store_string(JSON.stringify({}))
 		file.close()
 		file = null
-
 
 
 func check_username_available():
@@ -87,6 +86,13 @@ func create_account():
 			}
 		}
 		return true
-	
 	else:
 		return false
+
+
+func update_error_label(message : String):
+ # Display error message
+	$ErrorLabel.text = message
+	# Clear the error message after 2 seconds
+	await get_tree().create_timer(2).timeout
+	$Login/ErrorLabel.text = ""

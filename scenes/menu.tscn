@@ -174,7 +174,6 @@ grow_vertical = 2
 script = ExtResource("1_5swjr")
 
 [node name="Login" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -400,7 +399,10 @@ theme_override_fonts/font = ExtResource("12_ohcaa")
 text = "Create one!"
 flat = true
 
+[node name="Timer" type="Timer" parent="Login"]
+
 [node name="Register" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -410,6 +412,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_1mxwc")
+
+[node name="Timer" type="Timer" parent="Register"]
+wait_time = 2.0
+one_shot = true
 
 [node name="Background" type="Control" parent="Register"]
 anchors_preset = 0
@@ -587,6 +593,28 @@ flat = true
 [node name="Main" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("14_0hpur")
+
+[node name="TotalCoins2" type="Label" parent="Main"]
+texture_filter = 1
+offset_left = 706.0
+offset_top = 3.0
+offset_right = 720.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("8_xxfdu")
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="CoinIcon" type="NinePatchRect" parent="Main/TotalCoins2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -32.0
+offset_top = -1.0
+offset_right = -9.0
+offset_bottom = 22.0
+texture = ExtResource("9_vxi5v")
+region_rect = Rect2(3, 3, 10, 10)
 
 [node name="Panel" type="Panel" parent="Main"]
 anchors_preset = -1
@@ -1112,7 +1140,7 @@ modulate = Color(0, 0, 0, 0.443137)
 offset_right = 720.0
 offset_bottom = 400.0
 pivot_offset = Vector2(365, 205)
-color = Color(0, 0, 0, 0.27451)
+color = Color(0, 0, 0, 0.52549)
 
 [node name="CurrentScore" type="Label" parent="Pause"]
 offset_left = 599.0
@@ -1127,6 +1155,7 @@ offset_top = 3.0
 offset_right = 720.0
 offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("8_xxfdu")
+theme_override_font_sizes/font_size = 24
 text = "0"
 horizontal_alignment = 2
 autowrap_mode = 2
@@ -1134,30 +1163,32 @@ autowrap_mode = 2
 [node name="CoinIcon" type="NinePatchRect" parent="Pause/TotalCoins"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -14.0
-offset_bottom = 14.0
+offset_left = -32.0
+offset_top = -1.0
+offset_right = -9.0
+offset_bottom = 22.0
 texture = ExtResource("9_vxi5v")
 region_rect = Rect2(3, 3, 10, 10)
 
 [node name="Resume" type="Button" parent="Pause"]
-offset_left = 183.0
-offset_top = 189.0
-offset_right = 253.0
-offset_bottom = 229.0
+offset_left = 192.0
+offset_top = 184.0
+offset_right = 262.0
+offset_bottom = 224.0
 text = "Resume"
 
 [node name="Settings" type="Button" parent="Pause"]
-offset_left = 316.0
-offset_top = 189.0
-offset_right = 386.0
-offset_bottom = 229.0
+offset_left = 320.0
+offset_top = 184.0
+offset_right = 390.0
+offset_bottom = 224.0
 text = "Settings"
 
 [node name="EndRun" type="Button" parent="Pause"]
-offset_left = 453.0
-offset_top = 188.0
-offset_right = 523.0
-offset_bottom = 228.0
+offset_left = 448.0
+offset_top = 184.0
+offset_right = 518.0
+offset_bottom = 224.0
 text = "Quit"
 
 [node name="Transition" type="CanvasLayer" parent="."]

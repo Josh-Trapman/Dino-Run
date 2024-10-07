@@ -41,9 +41,14 @@ func _ready():
 	most_coins_collected = Global.player_data["UserData"]["MostCoinsCollected"]
 	all_time_coins = Global.player_data["UserData"]["AllTimeCoinsCollected"]
 	all_time_distance = Global.player_data["UserData"]["AllTimeDistance"]
+	
+	
 
 func new_game():
 	get_tree().paused = false
+	
+	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").text = str(Global.player_data["UserData"]["Coins"])
+	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").find_child("CoinIcon").position.x = len(str(Global.player_data["UserData"]["Coins"])) * -26
 	
 	menu_screens.find_child("Main").visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -107,6 +112,7 @@ func _process(delta):
 			game_running = true
 			$HUD.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").visible = false
 			menu_screens.find_child("Main").start_game()
 
 
