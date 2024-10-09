@@ -47,8 +47,8 @@ func _ready():
 func new_game():
 	get_tree().paused = false
 	
-	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").text = str(Global.player_data["UserData"]["Coins"])
-	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").find_child("CoinIcon").position.x = len(str(Global.player_data["UserData"]["Coins"])) * -26
+	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins").text = str(Global.player_data["UserData"]["Coins"])
+	get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins").find_child("CoinIcon").position.x = len(str(Global.player_data["UserData"]["Coins"])) * -21 - 6
 	
 	menu_screens.find_child("Main").visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -112,7 +112,7 @@ func _process(delta):
 			game_running = true
 			$HUD.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins2").visible = false
+			get_parent().find_child("Menu").find_child("Main").find_child("TotalCoins").visible = false
 			menu_screens.find_child("Main").start_game()
 
 
@@ -142,7 +142,7 @@ func spawn_items():
 			var coin_or_obstacle = randi_range(1,3)
 			# Spawns a random coin pattern 
 			if coin_or_obstacle == 1:
-				var pattern = randi_range(1, 2)
+				var pattern = randi_range(1, 5)
 				$Coin_Patterns.place_pattern(pattern, $Player.position.x, [screen_size.x, screen_size.y])
 			# Spawns a random obstacle
 			else:

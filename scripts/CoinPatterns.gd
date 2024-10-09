@@ -12,6 +12,9 @@ func _ready():
 	# Create coin patterns here
 	set_rect_pattern(1, 9, 3)
 	set_rect_pattern(2, 6, 5)
+	set_rect_pattern(3, 8, 1)
+	set_rect_pattern(4, 2, 2)
+	set_rect_pattern(5, 7, 2)
 
 func set_rect_pattern(pattern_index : int, columns : int, rows : int):
 	var x = 0

@@ -20,19 +20,30 @@ func _on_register_pressed():
 			# Closes the file to free up memory
 			file.close()
 			file = null
+			$Username.text = ""
+			$Password.text = ""
+			$ConfirmPassword.text = ""
+			return await update_error_label("Account registered", Color("00ff00"))
 		else:
-			return await update_error_label("Passwords must match")
+			return await update_error_label("Passwords must match", Color("ff0000"))
 	else:
-		return await update_error_label("Username is already in use")
+		return await update_error_label("Username is already in use", Color("ff0000"))
 
 
 func load_file():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	if file:
 		if typeof(file) != 0:
-			existing_data = JSON.parse_string(file.get_as_text())
-			file.close()
-			file = null
+			if JSON.parse_string(file.get_as_text()) == null:
+				file.close()
+				file = FileAccess.open(save_path, FileAccess.WRITE)
+				file.store_string(JSON.stringify({}))
+				file.close()
+				file = null
+			else:
+				existing_data = JSON.parse_string(file.get_as_text())
+				file.close()
+				file = null
 		else:
 			file.close()
 			file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -90,9 +101,10 @@ func create_account():
 		return false
 
 
-func update_error_label(message : String):
+func update_error_label(message : String, colour):
  # Display error message
 	$ErrorLabel.text = message
+	$ErrorLabel["theme_override_colors/font_color"] = Color(colour)
 	# Clear the error message after 2 seconds
 	await get_tree().create_timer(2).timeout
-	$Login/ErrorLabel.text = ""
+	$ErrorLabel.text = ""

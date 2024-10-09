@@ -7,6 +7,7 @@ var save_path = "user://save.dat"
 func _ready():
 	# Receives signal when skin is changed
 	$Menu/Main/Skins.connect("skin_changed", _on_skin_changed)
+	$Menu/Main/Skins.connect("skin_bought", _on_skin_bought)
 
 
 func logged_in():
@@ -43,3 +44,7 @@ func _on_skin_changed():
 		Global.current_wings = $Game/Player/Animations/GreenWings
 		Global.current_skin.visible = true
 		Global.current_wings.visible = true
+
+func _on_skin_bought():
+	$Menu/Main/TotalCoins.text = str(Global.player_data["UserData"]["Coins"])
+	$Menu/Main/TotalCoins/CoinIcon.position.x = len(str(Global.player_data["UserData"]["Coins"])) * -21 - 6

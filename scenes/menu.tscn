@@ -174,6 +174,7 @@ grow_vertical = 2
 script = ExtResource("1_5swjr")
 
 [node name="Login" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -402,7 +403,6 @@ flat = true
 [node name="Timer" type="Timer" parent="Login"]
 
 [node name="Register" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -515,7 +515,7 @@ offset_left = -362.0
 offset_top = 138.0
 offset_right = 358.0
 offset_bottom = 161.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("8_xxfdu")
@@ -594,9 +594,9 @@ flat = true
 visible = false
 script = ExtResource("14_0hpur")
 
-[node name="TotalCoins2" type="Label" parent="Main"]
+[node name="TotalCoins" type="Label" parent="Main"]
 texture_filter = 1
-offset_left = 706.0
+offset_left = 702.0
 offset_top = 3.0
 offset_right = 720.0
 offset_bottom = 27.0
@@ -606,12 +606,12 @@ text = "0"
 horizontal_alignment = 2
 autowrap_mode = 2
 
-[node name="CoinIcon" type="NinePatchRect" parent="Main/TotalCoins2"]
+[node name="CoinIcon" type="NinePatchRect" parent="Main/TotalCoins"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -32.0
+offset_left = -27.0
 offset_top = -1.0
-offset_right = -9.0
+offset_right = -4.0
 offset_bottom = 22.0
 texture = ExtResource("9_vxi5v")
 region_rect = Rect2(3, 3, 10, 10)
@@ -644,12 +644,6 @@ offset_bottom = 217.0
 theme_override_fonts/font = ExtResource("12_ohcaa")
 text = "Press space to play"
 label_settings = ExtResource("15_ma70i")
-
-[node name="TotalCoins" type="Label" parent="Main"]
-offset_left = 168.0
-offset_top = 8.0
-offset_right = 208.0
-offset_bottom = 31.0
 
 [node name="Buttons" type="Control" parent="Main"]
 layout_mode = 3

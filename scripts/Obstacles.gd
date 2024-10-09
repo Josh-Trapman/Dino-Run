@@ -6,7 +6,7 @@ var warning = preload("res://scenes/warning.tscn")
 
 # Creates an instance of the warning scene at the player's y value
 func spawn():
-	var warning_instance = warning.instantiate()	
+	var warning_instance = warning.instantiate()
 	warning_instance.position.y = player.position.y
 	add_child(warning_instance)
 	

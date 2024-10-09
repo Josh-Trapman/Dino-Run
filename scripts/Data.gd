@@ -39,13 +39,22 @@ func _on_login_pressed():
 	$Login/Username.text = ""
 	$Login/Password.text = ""
 
+
 func load_file():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	if file:
 		if typeof(file) != 0:
-			existing_data = JSON.parse_string(file.get_as_text())
-			file.close()
-			file = null
+			if JSON.parse_string(file.get_as_text()) == null:
+				file.close()
+				file = FileAccess.open(save_path, FileAccess.WRITE)
+				file.store_string(JSON.stringify({}))
+				file.close()
+				file = null
+			else:
+				existing_data = JSON.parse_string(file.get_as_text())
+				file.close()
+				file = null
+			
 		else:
 			file.close()
 			file = FileAccess.open(save_path, FileAccess.WRITE)

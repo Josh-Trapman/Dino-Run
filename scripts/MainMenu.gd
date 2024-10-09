@@ -26,6 +26,54 @@ func _on_settings_pressed():
 
 
 func _on_skins_pressed():
+	if Global.player_data["UserData"]["EquippedSkin"] == "Bluezoid":
+		$Skins/SkinBlue/SkinEquipped.visible = true
+		$Skins/SkinBlue/EquipSkin.visible = false
+		
+		# If Red skin is owned sets it to an equippable state
+		if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
+			$Skins/SkinRed/EquipSkin.visible = true
+			$Skins/SkinRed/Buy.visible = false
+			$Skins/SkinRed/Price.visible = false
+		
+		# If Green skin is owned sets it to an equippable state
+		if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
+			$Skins/SkinGreen/EquipSkin.visible = true
+			$Skins/SkinGreen/Buy.visible = false
+			$Skins/SkinGreen/Price.visible = false
+		
+	# Set Red skin to equipped state
+	elif Global.player_data["UserData"]["EquippedSkin"] == "BlazeRex":
+		$Skins/SkinRed/SkinEquipped.visible = true
+		$Skins/SkinRed/Buy.visible = false
+		$Skins/SkinRed/Price.visible = false
+		
+		# Sets Blue skin to an equippable state
+		if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
+			$Skins/SkinBlue/EquipSkin.visible = true
+		
+		# If Green skin is owned sets it to an equippable state
+		if Global.player_data["UserData"]["Skins"]["LeafRex"] == true:
+			$Skins/SkinGreen/EquipSkin.visible = true
+			$Skins/SkinGreen/Buy.visible = false
+			$Skins/SkinGreen/Price.visible = false
+		
+	# Set Green skin to equipped state
+	elif Global.player_data["UserData"]["EquippedSkin"] == "LeafRex":
+		$Skins/SkinGreen/SkinEquipped.visible = true
+		$Skins/SkinGreen/Buy.visible = false
+		$Skins/SkinGreen/Price.visible = false
+		
+		# Sets Blue skin to an equippable state
+		if Global.player_data["UserData"]["Skins"]["Bluezoid"] == true:
+			$Skins/SkinBlue/EquipSkin.visible = true
+		
+		# If Red skin is owned sets it to an equippable state
+		if Global.player_data["UserData"]["Skins"]["BlazeRex"] == true:
+			$Skins/SkinRed/EquipSkin.visible = true
+			$Skins/SkinRed/Buy.visible = false
+			$Skins/SkinRed/Price.visible = false
+	
 	$Buttons.visible = false
 	$Skins.visible = true
 	Global.can_click = false
@@ -41,6 +89,7 @@ func _on_logout_pressed():
 	Global.current_skin = null
 	Global.current_wings = null
 	Global.game_instance = null
+	Global.warning_positions = []
 	
 	visible = false
 	
